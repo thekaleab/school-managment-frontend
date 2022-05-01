@@ -18,6 +18,7 @@ const Login = () => {
         }
         axios.post("http://localhost:8080/api/v1/authenticate", data).then(x=>{
             localStorage.setItem("access token", x.data.accessToken)
+            console.log(x.data)
             if(x.data.role[0].name=="PROFESSOR"){
                 navigate("/professor")
             }
@@ -27,7 +28,6 @@ const Login = () => {
             else if(x.data.role[0].name=="STUDENT"){
                 navigate("/student")
             }
-            console.log(x.data.role[0].name=="PROFESSOR")
         }).catch(y=>console.log(y))
         
         // console.log(localStorage.getItem("access"))
