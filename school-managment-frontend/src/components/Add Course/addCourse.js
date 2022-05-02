@@ -1,31 +1,18 @@
-import axios from "axios";
-import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "../../../node_modules/bootstrap/dist/css/bootstrap.css"
-const AddUser = () => {
-    const onClick = () => {
-        localStorage.removeItem("access token")
-    }
+import axios from "axios"
+import { useRef } from "react"
+import { Link, useNavigate } from "react-router-dom"
 
-    const [role, setRole] = useState(1)
+const AddCourse = ()=>{
     const myForm = useRef()
-    const navigate = useNavigate();
-
-    const onSubmit = () => {
+    const navigate = useNavigate()
+    const onSubmit = ()=>{
         const form = myForm.current
         const data = {
-            firstName: form['firstName'].value,
-            lastName: form['lastName'].value,
-            email: form['email'].value,
-            password: form['password'].value,
-            roles: ({ role }.role == '1') ? [{
-                roleId: 1,
-                name: "STUDENT"
-            }] : [{
-                roleId: 2,
-                name: "PROFESSOR"
-            }]
+            courseName: form['courseName'].value,
+            courseCode : form['courseCode'].value,
+            professor : form['professor'].value
         }
+        console.log(data) 
         axios.interceptors.request.use(
             config => {
                 
@@ -42,40 +29,41 @@ const AddUser = () => {
                 Promise.reject(error)
             }
         )
-        axios.post("http://localhost:8080/api/v1/users", data).then(x => console.log("success")).catch(x => console.error(x))
+        axios.post("http://localhost:8080/api/v1/courses", data).then(x => console.log("success")).catch(x => console.error(x))
         navigate("/admin")
+
     }
-    return (
+    const onClick = () => {
+        localStorage.removeItem("access token")
+    }
+    return(
         <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Addis Ababa School</a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <li><Link to="/home" className="nav-link active">Home</Link></li>
-                            </li>
-                            <li className="nav-item">
-                                <li><Link to="/home" className="nav-link active">About Us</Link></li>
-                            </li>
-                            <li className="nav-item">
-                                <li><Link to="/" onClick={onClick} className="nav-link active">Logout</Link></li>
-                            </li>
-                        </ul>
-                        <form className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form>
-                    </div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container-fluid">
+                <a className="navbar-brand" href="#">Addis Ababa School</a>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <li><Link to="/home" className="nav-link active">Home</Link></li>
+                        </li>
+                        <li className="nav-item">
+                            <li><Link to="/home" className="nav-link active">About Us</Link></li>
+                        </li>
+                        <li className="nav-item">
+                            <li><Link to="/" onClick={onClick} className="nav-link active">Logout</Link></li>
+                        </li>
+                    </ul>
+                    <form className="d-flex">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button className="btn btn-outline-success" type="submit">Search</button>
+                    </form>
                 </div>
-            </nav>
-
-
-
-            <div className="container-sm">
+            </div>
+        </nav>
+        <div className="container-sm">
                 <br></br>
                 <br></br>
                 <br></br>
@@ -83,22 +71,19 @@ const AddUser = () => {
                 <br></br>
                 <form ref={myForm}>
                     <div className="mb-3">
-                        <label for="exampleFormControlInput1" className="form-label">First Name</label>
-                        <input type="text" className="form-control" label={'firstName'} name={'firstName'} />
+                        <label for="exampleFormControlInput1" className="form-label">Course Name</label>
+                        <input type="text" className="form-control" label={'courseName'} name={'courseName'} />
                     </div>
                     <div className="mb-3">
-                        <label for="exampleFormControlInput1" className="form-label">Last Name</label>
-                        <input type="text" className="form-control" label={'lastName'} name={'lastName'} />
+                        <label for="exampleFormControlInput1" className="form-label">Course Code</label>
+                        <input type="text" className="form-control" label={'courseCode'} name={'courseCode'} />
                     </div>
                     <div className="mb-3">
-                        <label for="exampleFormControlInput1" className="form-label">Email</label>
-                        <input type="text" className="form-control" label={'email'} name={'email'} />
+                        <label for="exampleFormControlInput1" className="form-label">Professor Name</label>
+                        <input type="text" className="form-control" label={'professor'} name={'professor'} />
                     </div>
-                    <div className="mb-3">
-                        <label for="exampleFormControlInput1" className="form-label">Password</label>
-                        <input type="text" className="form-control" label={'password'} name={'password'} />
-                    </div>
-                    <div className="mb-3">
+                    
+                    {/* <div className="mb-3">
                         <label for="exampleFormControlInput1" className="form-label">Role</label>
                         <select className="form-select" aria-label="Default select example" value={role} onChange={(e) => {
                             const selectedRole = e.target.value
@@ -107,15 +92,30 @@ const AddUser = () => {
                             <option value="1">STUDENT</option>
                             <option value="2">PROFESSOR</option>
                         </select>
-                    </div>
+                    </div> */}
                     <button type="button" className="btn btn-primary" onClick={onSubmit}>Add User</button>
                 </form>
             </div>
-            <div>
+            <div></div>
+
+
+            <br></br>
                 <br></br>
                 <br></br>
                 <br></br>
-                <footer>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+              
+
+        <footer>
                     <div className="container">
                         <div className="row">
 
@@ -181,9 +181,8 @@ const AddUser = () => {
                     </div>
 
                 </footer>
-            </div>
         </div>
     )
 
 }
-export default AddUser;
+export default AddCourse

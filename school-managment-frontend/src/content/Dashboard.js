@@ -6,7 +6,7 @@ const Dashboard = () => {
 
     return (
         <React.Fragment>
-            <Header />
+            {/* <Header /> */}
             <PageRouter />
         </React.Fragment>
 
