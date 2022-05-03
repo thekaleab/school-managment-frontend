@@ -1,6 +1,9 @@
+import axios from "axios"
 import { useRef } from "react"
+import { useNavigate } from "react-router-dom"
 
 const Studentss = (props) => {
+    const navigate = useNavigate()
 
     const myForm = useRef()
 
@@ -8,9 +11,27 @@ const Studentss = (props) => {
         e.preventDefault()
         const form = myForm.current
         const data = {
+            firstName : props.firstName,
             finalResults : form['grade'].value
         }
-        console.log(data)
+        axios.interceptors.request.use(
+            config => {
+                
+                const token = localStorage.getItem("access token")
+                if(token!=null){
+                    config.headers['Authorization'] = 'Bearer ' + token
+                    config.headers['Content-Type'] = 'application/json';
+                    config.headers.common['Access-Control-Allow-Origin'] = '*'
+                }
+                return config
+
+            },
+            error =>{
+                Promise.reject(error)
+            }
+        )
+        axios.put("http://localhost:8080/api/v1/grades", data).then(x => console.log("success")).catch(x => console.error(x))
+        navigate("/list-students")
 
     }
 
