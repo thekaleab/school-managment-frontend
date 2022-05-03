@@ -23,9 +23,6 @@ const Professor = () => {
                                 <li><Link to="/home" className="nav-link active">About Us</Link></li>
                             </li>
                             <li className="nav-item">
-                                <li><Link to="/add-grades" className="nav-link active">Add Grades</Link></li>
-                            </li>
-                            <li className="nav-item">
                                 <li><Link to="/" onClick={onClick} className="nav-link active">Logout</Link></li>
                             </li>
                         </ul>
@@ -48,10 +45,8 @@ const Professor = () => {
                     <div className="col">
                         <div className="p-3 border bg-light">
                             <div class="d-flex flex-row bd-highlight mb-3">
-                                <div class="p-2 bd-highlight"> <button className="btn btn-outline-success" type="submit"><Link to="/list-courses" className="nav-link active">List of Students</Link></button></div>
+                                <div class="p-2 bd-highlight"> <button className="btn btn-outline-success" type="submit"><Link to="/list-students" className="nav-link active">List of Students</Link></button></div>
                                 <div class="p-2 bd-highlight"><button className="btn btn-outline-success" type="submit"><Link to="/list-users" className="nav-link active">Add Grades</Link></button></div>
-                                <div class="p-2 bd-highlight"><button className="btn btn-outline-success" type="submit"><Link to="/add-courses" className="nav-link active">Apply for course</Link></button></div>
-                                <div class="p-2 bd-highlight"><button className="btn btn-outline-success" type="submit"><Link to="/add-grades" className="nav-link active">Check grades</Link></button></div>
                             </div>
                         </div>
 

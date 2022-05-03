@@ -48,7 +48,6 @@ const Admin = () => {
                                 <div class="p-2 bd-highlight"> <button className="btn btn-outline-success" type="submit"><Link to="/add-user" className="nav-link active">Add Users</Link></button></div>
                                 <div class="p-2 bd-highlight"><button className="btn btn-outline-success" type="submit"><Link to="/list-users" className="nav-link active">List Of Users</Link></button></div>
                                 <div class="p-2 bd-highlight"><button className="btn btn-outline-success" type="submit"><Link to="/add-courses" className="nav-link active">Add Course</Link></button></div>
-                                <div class="p-2 bd-highlight"><button className="btn btn-outline-success" type="submit"><Link to="/add-grades" className="nav-link active">Approve Student</Link></button></div>
                             </div>
                         </div>
 

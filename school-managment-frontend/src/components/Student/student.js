@@ -49,8 +49,7 @@ const Student = () => {
                         <div className="p-3 border bg-light">
                             <div class="d-flex flex-row bd-highlight mb-3">
                                 <div class="p-2 bd-highlight"> <button className="btn btn-outline-success" type="submit"><Link to="/list-courses" className="nav-link active">List of Availbale courses</Link></button></div>
-                                <div class="p-2 bd-highlight"><button className="btn btn-outline-success" type="submit"><Link to="/list-users" className="nav-link active">Enrolled Courses</Link></button></div>
-                                <div class="p-2 bd-highlight"><button className="btn btn-outline-success" type="submit"><Link to="/add-courses" className="nav-link active">Apply for course</Link></button></div>
+                                <div class="p-2 bd-highlight"><button className="btn btn-outline-success" type="submit"><Link to="/enrolled-courses" className="nav-link active">Enrolled Courses</Link></button></div>
                                 <div class="p-2 bd-highlight"><button className="btn btn-outline-success" type="submit"><Link to="/add-grades" className="nav-link active">Check grades</Link></button></div>
                             </div>
                         </div>
